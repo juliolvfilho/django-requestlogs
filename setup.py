@@ -7,6 +7,7 @@ requirements = (
     'Django>=1.11,<4.0',
     'djangorestframework>=3.0,<4.0',
     'setuptools',
+    'logentries'
 )
 
 dev_requirements = (

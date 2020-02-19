@@ -7,7 +7,9 @@ from rest_framework.utils.encoders import JSONEncoder
 from .base import SETTINGS
 
 
-logger = logging.getLogger('requestlogs')
+logger = logging.getLogger('logentries')
+logger.setLevel(logging.INFO)
+logger.addHandler(LogentriesHandler(SETTINGS['LOGENTRIES_TOKEN']))
 
 
 class JsonDumpField(serializers.Field):
@@ -38,6 +40,11 @@ class BaseEntrySerializer(serializers.Serializer):
     request = BaseRequestSerializer(read_only=True)
     response = ResponseSerializer(read_only=True)
     user = UserSerializer()
+
+    @property
+    def data(self):
+        data = super(BaseEntrySerializer, self).data
+        return json.dumps(value, cls=JSONEncoder)
 
 
 class RequestIdEntrySerializer(BaseEntrySerializer):

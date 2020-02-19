@@ -237,3 +237,15 @@ LOGGING = {
     },
 }
 ```
+
+
+# Logentries
+
+To send logs to Logentries (logentries.com), just add your token to the MIDDLEWARE setting:
+
+```python
+REQUESTLOGS = {
+    ...
+    'LOGENTRIES_TOKEN': '01234567-aaaa-bbbb-cccc-01234567890f',
+}
+```
